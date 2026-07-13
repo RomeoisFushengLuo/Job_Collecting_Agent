@@ -1,0 +1,51 @@
+name: Job Search Agent
+
+on:
+  schedule:
+    # GitHub Actions 的 cron 只支持 UTC 时间，且不会自动处理夏令时。
+    # 下面设置的是 UTC 15:00 运行，对应：
+    #   - 太平洋时间(PDT, 夏令时, 3月-11月)  早上 8:00
+    #   - 太平洋时间(PST, 标准时, 11月-3月)  早上 7:00
+    # 如果你想要更精确的本地时间，请自行调整下面的分钟/小时数值，
+    # 或者在 GitHub Actions 页面手动触发（见下方 workflow_dispatch）。
+    - cron: "0 15 * * 2,4"   # 每周二、周四
+  workflow_dispatch: {}       # 允许你在GitHub网页上手动点击"Run workflow"立即触发，方便调试
+
+permissions:
+  contents: write   # 需要写权限，用于把最新的去重记录提交回仓库
+
+jobs:
+  run-agent:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run job search agent
+        env:
+          SMTP_HOST: ${{ secrets.SMTP_HOST }}
+          SMTP_PORT: ${{ secrets.SMTP_PORT }}
+          SMTP_USER: ${{ secrets.SMTP_USER }}
+          SMTP_PASSWORD: ${{ secrets.SMTP_PASSWORD }}
+          RECIPIENT_EMAIL: ${{ secrets.RECIPIENT_EMAIL }}
+          IMAP_HOST: ${{ secrets.IMAP_HOST }}
+          IMAP_PORT: ${{ secrets.IMAP_PORT }}
+          IMAP_USER: ${{ secrets.IMAP_USER }}
+          IMAP_PASSWORD: ${{ secrets.IMAP_PASSWORD }}
+        run: python main.py
+
+      - name: Commit updated dedup record
+        run: |
+          git config --local user.email "job-agent-bot@users.noreply.github.com"
+          git config --local user.name "Job Agent Bot"
+          git add data/sent_jobs.json
+          git diff --quiet --cached || git commit -m "chore: update sent_jobs dedup record [skip ci]"
+          git push

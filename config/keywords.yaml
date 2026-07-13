@@ -1,0 +1,46 @@
+# ============================================================
+# 关键词配置文件
+# ============================================================
+# 你可以随时编辑这个文件来调整搜索关键词，改完提交(commit)到
+# GitHub 后，下次定时任务运行时会自动读取最新配置。
+#
+# 匹配规则说明：
+#   - 每个国家/地区下的 keywords 是"或"关系：职位标题或描述中
+#     只要命中任意一个关键词，就会被收录
+#   - keywords 不区分大小写
+#   - exclude_keywords 是排除词：命中即被过滤掉，优先级高于
+#     keywords（例如你想要 "Software Engineer" 但不想要
+#     "Senior" 级别，可以把 "Senior" 放进 exclude_keywords）
+#
+# 示例已经帮你填了几个占位关键词，改成你自己想要的岗位名称即可。
+# ============================================================
+
+US:
+  keywords:
+    - "AI Engineer"
+    - "Machine Learning Engineer"
+    - "Data Scientist"
+    - "Software Engineer"
+  exclude_keywords:
+    - "Staff"
+    - "Principal"
+
+SG:
+  keywords:
+    - "Software Engineer"
+    - "Data Analyst"
+    - "FinTech"
+  exclude_keywords: []
+
+HK:
+  keywords:
+    - "Quant"
+    - "Risk Analyst"
+    - "Data Scientist"
+  exclude_keywords: []
+
+# 全局设置
+settings:
+  # 只收录最近 N 天内发布/更新的职位（Greenhouse/MyCareersFuture用得上；
+  # 邮件订阅来源天然就是"最近"的，不受此限制）
+  max_days_old: 7

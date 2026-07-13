@@ -1,0 +1,28 @@
+# ============================================================
+# Greenhouse 目标公司清单
+# ============================================================
+# Greenhouse 的 Job Board API 是"按公司查询"的，不是全网搜索，
+# 所以你需要列出你想追踪的、招聘系统用的是 Greenhouse 的公司。
+#
+# 怎么找一个公司的 board_token：
+#   1. 去该公司官网的 Careers/招聘页面，如果它跳转到形如
+#      https://boards.greenhouse.io/xxxx 的地址，那么 xxxx 就是 board_token
+#   2. 或者直接尝试访问：
+#      https://boards-api.greenhouse.io/v1/boards/{猜测的token}/jobs
+#      能返回 JSON 数据就说明 token 正确
+#
+# 下面是几个示例（真实存在，可用于测试跑通流程），
+# 请替换/补充成你实际想追踪的公司列表。
+# ============================================================
+
+companies:
+  - name: "Airbnb"
+    board_token: "airbnb"
+  - name: "Stripe"
+    board_token: "stripe"
+  - name: "DoorDash"
+    board_token: "doordash"
+
+  # 在这里继续添加你想追踪的公司
+  # - name: "公司名"
+  #   board_token: "xxxx"
