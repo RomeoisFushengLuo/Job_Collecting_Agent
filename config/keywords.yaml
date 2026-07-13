@@ -18,26 +18,70 @@
 US:
   keywords:
     - "AI Engineer"
+    - "Quant"
+    - "Risk Analyst"
     - "Machine Learning Engineer"
     - "Data Scientist"
-    - "Software Engineer"
+    - "Quantitative Analyst"
+    - "Quantitative Research"
+    - "Quantitative Researcher"
+    - "Quantitative Developer"
+    - "Quantitative Trader"
+    - "Agentic"
   exclude_keywords:
-    - "Staff"
-    - "Principal"
+    - "VP"
+    - "AVP"
 
 SG:
   keywords:
-    - "Software Engineer"
-    - "Data Analyst"
-    - "FinTech"
-  exclude_keywords: []
+    - "AI Engineer"
+    - "Quant"
+    - "Risk Analyst"
+    - "Machine Learning Engineer"
+    - "Data Scientist"
+    - "Quantitative Analyst"
+    - "Quantitative Research"
+    - "Quantitative Researcher"
+    - "Quantitative Developer"
+    - "Quantitative Trader"
+    - "Agentic"
+  exclude_keywords:
+    - "VP"
+    - "AVP"
 
 HK:
   keywords:
+    - "AI Engineer"
     - "Quant"
     - "Risk Analyst"
+    - "Machine Learning Engineer"
     - "Data Scientist"
-  exclude_keywords: []
+    - "Quantitative Analyst"
+    - "Quantitative Research"
+    - "Quantitative Researcher"
+    - "Quantitative Developer"
+    - "Quantitative Trader"
+    - "Agentic"
+  exclude_keywords:
+    - "VP"
+    - "AVP"
+
+SH:
+  keywords:
+    - "AI Engineer"
+    - "Quant"
+    - "Risk Analyst"
+    - "Machine Learning Engineer"
+    - "Data Scientist"
+    - "Quantitative Analyst"
+    - "Quantitative Research"
+    - "Quantitative Researcher"
+    - "Quantitative Developer"
+    - "Quantitative Trader"
+    - "Agentic"
+  exclude_keywords:
+    - "VP"
+    - "AVP"
 
 # 全局设置
 settings:

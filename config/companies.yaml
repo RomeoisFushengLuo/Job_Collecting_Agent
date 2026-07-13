@@ -16,12 +16,20 @@
 # ============================================================
 
 companies:
-  - name: "Airbnb"
-    board_token: "airbnb"
-  - name: "Stripe"
-    board_token: "stripe"
-  - name: "DoorDash"
-    board_token: "doordash"
+  - name: "ManGroup"
+    board_token: "mangroup"
+  - name: "Cube"
+    board_token: "quberesearchandtechnologies"
+  - name: "AlphaGrep"
+    board_token: "alphagrepsecurities"
+  - name: "Engelhart"
+    board_token: "engelhart"
+  - name: "QuadratureCapital"
+    board_token: "quadraturecapital"
+  - name: "ForgeGlobal"
+    board_token: "forgeglobal"
+  - name: "Exante"
+    board_token: "xntltd"
 
   # 在这里继续添加你想追踪的公司
   # - name: "公司名"

@@ -20,6 +20,7 @@ from sources.email_parsers.indeed_parser import IndeedParser
 from sources.email_parsers.glassdoor_parser import GlassdoorParser
 from sources.email_parsers.handshake_parser import HandshakeParser
 from sources.email_parsers.jobsdb_parser import JobsDBParser
+from utils import clean_env
 
 PARSERS = [LinkedInParser(), IndeedParser(), GlassdoorParser(), HandshakeParser(), JobsDBParser()]
 
@@ -69,10 +70,11 @@ def fetch_job_alert_emails() -> list:
     连接IMAP邮箱，读取未读邮件，用对应parser解析，返回统一格式的职位列表。
     处理完的邮件会被标记为已读（不会删除），避免下次重复处理。
     """
-    host = os.environ.get("IMAP_HOST")
-    port = int(os.environ.get("IMAP_PORT", "993"))
-    user = os.environ.get("IMAP_USER")
-    password = os.environ.get("IMAP_PASSWORD")
+    host = clean_env(os.environ.get("IMAP_HOST"))
+    port_raw = clean_env(os.environ.get("IMAP_PORT", "993"))
+    port = int(port_raw) if port_raw else 993
+    user = clean_env(os.environ.get("IMAP_USER"))
+    password = clean_env(os.environ.get("IMAP_PASSWORD"))
 
     if not all([host, user, password]):
         print("[EmailReader] 未配置IMAP相关环境变量，跳过邮件订阅数据源。")

@@ -14,6 +14,8 @@ from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 from datetime import datetime
 
+from utils import clean_env
+
 
 def _build_html(jobs_by_region: dict) -> str:
     total = sum(len(v) for v in jobs_by_region.values())
@@ -78,11 +80,12 @@ def send_summary_email(jobs_by_region: dict) -> bool:
     发送成功返回True，失败返回False（不抛异常，避免中断整个流程导致
     去重记录状态不一致）。
     """
-    host = os.environ.get("SMTP_HOST")
-    port = int(os.environ.get("SMTP_PORT", "587"))
-    user = os.environ.get("SMTP_USER")
-    password = os.environ.get("SMTP_PASSWORD")
-    recipient = os.environ.get("RECIPIENT_EMAIL")
+    host = clean_env(os.environ.get("SMTP_HOST"))
+    port_raw = clean_env(os.environ.get("SMTP_PORT", "587"))
+    port = int(port_raw) if port_raw else 587
+    user = clean_env(os.environ.get("SMTP_USER"))
+    password = clean_env(os.environ.get("SMTP_PASSWORD"))
+    recipient = clean_env(os.environ.get("RECIPIENT_EMAIL"))
 
     if not all([host, user, password, recipient]):
         print("[EmailSender] SMTP相关环境变量未配置完整，无法发送邮件。")
