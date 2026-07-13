@@ -8,7 +8,7 @@ on:
     #   - 太平洋时间(PST, 标准时, 11月-3月)  早上 7:00
     # 如果你想要更精确的本地时间，请自行调整下面的分钟/小时数值，
     # 或者在 GitHub Actions 页面手动触发（见下方 workflow_dispatch）。
-    - cron: "0 15 * * 2,4"   # 每周二、周四
+    - cron: "0 10 * * 2,4"   # 每周二、周四
   workflow_dispatch: {}       # 允许你在GitHub网页上手动点击"Run workflow"立即触发，方便调试
 
 permissions:
