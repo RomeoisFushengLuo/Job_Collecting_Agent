@@ -63,7 +63,8 @@ def fetch_mycareersfuture_jobs(keywords: list, exclude_keywords: list, max_days_
                 title = job.get("title", "")
                 description = strip_html(job.get("description", ""))
                 uuid = job.get("uuid", "")
-                link = f"https://www.mycareersfuture.gov.sg/job/{job.get('metadata', {}).get('jobDetailsUrl', uuid)}" if uuid else ""
+                job_details_url = job.get("metadata", {}).get("jobDetailsUrl", "")
+                link = job_details_url if job_details_url else (f"https://www.mycareersfuture.gov.sg/job/{uuid}" if uuid else "")
 
                 if not link or link in seen_urls:
                     continue
